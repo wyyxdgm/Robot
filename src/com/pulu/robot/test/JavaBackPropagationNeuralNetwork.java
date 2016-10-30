@@ -237,7 +237,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * 最速梯度下降法 来计算 delta规则
+	 * 最速梯度下降法 来计算 delta规则(可能陷入局部最优导致无法收敛。。)
 	 * 
 	 * @param datas
 	 * @return
