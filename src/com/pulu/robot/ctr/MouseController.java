@@ -1,10 +1,10 @@
-package com.erya.ctr;
+package com.pulu.robot.ctr;
 
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
-import com.erya.base.Rectangle;
+import com.pulu.robot.base.Rectangle;
 
 /**
  * 鼠标控制者

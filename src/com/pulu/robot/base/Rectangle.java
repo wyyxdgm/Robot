@@ -1,4 +1,4 @@
-package com.erya.base;
+package com.pulu.robot.base;
 
 public class Rectangle {
 	public Rectangle(int x, int y) {
