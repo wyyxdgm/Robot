@@ -1,33 +1,35 @@
 package com.pulu.robot.test;
+
 import java.util.Arrays;
 
 import com.pulu.robot.nn.BpDeep;
-public class BpDeepTest{
-    public static void main(String[] args){
-        //³õÊ¼»¯Éñ¾­ÍøÂçµÄ»ù±¾ÅäÖÃ
-        //µÚÒ»¸ö²ÎÊıÊÇÒ»¸öÕûĞÍÊı×é£¬±íÊ¾Éñ¾­ÍøÂçµÄ²ãÊıºÍÃ¿²ã½ÚµãÊı£¬±ÈÈç{3,10,10,10,10,2}±íÊ¾ÊäÈë²ãÊÇ3¸ö½Úµã£¬Êä³ö²ãÊÇ2¸ö½Úµã£¬ÖĞ¼äÓĞ4²ãÒşº¬²ã£¬Ã¿²ã10¸ö½Úµã
-        //µÚ¶ş¸ö²ÎÊıÊÇÑ§Ï°²½³¤£¬µÚÈı¸ö²ÎÊıÊÇ¶¯Á¿ÏµÊı
-        BpDeep bp = new BpDeep(new int[]{2,10,2}, 0.15, 0.8);
 
-        //ÉèÖÃÑù±¾Êı¾İ£¬¶ÔÓ¦ÉÏÃæµÄ4¸ö¶şÎ¬×ø±êÊı¾İ
-        double[][] data = new double[][]{{1,2},{2,2},{1,1},{2,1}};
-        //ÉèÖÃÄ¿±êÊı¾İ£¬¶ÔÓ¦4¸ö×ø±êÊı¾İµÄ·ÖÀà
-        double[][] target = new double[][]{{1,0},{0,1},{0,1},{1,0}};
+public class BpDeepTest {
+	public static void main(String[] args) {
+		// åˆå§‹åŒ–ç¥ç»ç½‘ç»œçš„åŸºæœ¬é…ç½®
+		// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯ä¸€ä¸ªæ•´å‹æ•°ç»„ï¼Œè¡¨ç¤ºç¥ç»ç½‘ç»œçš„å±‚æ•°å’Œæ¯å±‚èŠ‚ç‚¹æ•°ï¼Œæ¯”å¦‚{3,10,10,10,10,2}è¡¨ç¤ºè¾“å…¥å±‚æ˜¯3ä¸ªèŠ‚ç‚¹ï¼Œè¾“å‡ºå±‚æ˜¯2ä¸ªèŠ‚ç‚¹ï¼Œä¸­é—´æœ‰4å±‚éšå«å±‚ï¼Œæ¯å±‚10ä¸ªèŠ‚ç‚¹
+		// ç¬¬äºŒä¸ªå‚æ•°æ˜¯å­¦ä¹ æ­¥é•¿ï¼Œç¬¬ä¸‰ä¸ªå‚æ•°æ˜¯åŠ¨é‡ç³»æ•°
+		BpDeep bp = new BpDeep(new int[] { 2, 10, 2 }, 0.15, 0.8);
 
-        //µü´úÑµÁ·5000´Î
-        for(int n=0;n<5000;n++)
-            for(int i=0;i<data.length;i++)
-                bp.train(data[i], target[i]);
+		// è®¾ç½®æ ·æœ¬æ•°æ®ï¼Œå¯¹åº”ä¸Šé¢çš„4ä¸ªäºŒç»´åæ ‡æ•°æ®
+		double[][] data = new double[][] { { 1, 2 }, { 2, 2 }, { 1, 1 }, { 2, 1 } };
+		// è®¾ç½®ç›®æ ‡æ•°æ®ï¼Œå¯¹åº”4ä¸ªåæ ‡æ•°æ®çš„åˆ†ç±»
+		double[][] target = new double[][] { { 1, 0 }, { 0, 1 }, { 0, 1 }, { 1, 0 } };
 
-        //¸ù¾İÑµÁ·½á¹ûÀ´¼ìÑéÑù±¾Êı¾İ
-        for(int j=0;j<data.length;j++){
-            double[] result = bp.computeOut(data[j]);
-            System.out.println(Arrays.toString(data[j])+":"+Arrays.toString(result));
-        }
+		// è¿­ä»£è®­ç»ƒ5000æ¬¡
+		for (int n = 0; n < 5000; n++)
+			for (int i = 0; i < data.length; i++)
+				bp.train(data[i], target[i]);
 
-        //¸ù¾İÑµÁ·½á¹ûÀ´Ô¤²âÒ»ÌõĞÂÊı¾İµÄ·ÖÀà
-        double[] x = new double[]{-3,1};
-        double[] result = bp.computeOut(x);
-        System.out.println(Arrays.toString(x)+":"+Arrays.toString(result));
-    }
+		// æ ¹æ®è®­ç»ƒç»“æœæ¥æ£€éªŒæ ·æœ¬æ•°æ®
+		for (int j = 0; j < data.length; j++) {
+			double[] result = bp.computeOut(data[j]);
+			System.out.println(Arrays.toString(data[j]) + ":" + Arrays.toString(result));
+		}
+
+		// æ ¹æ®è®­ç»ƒç»“æœæ¥é¢„æµ‹ä¸€æ¡æ–°æ•°æ®çš„åˆ†ç±»
+		double[] x = new double[] { -3, 1 };
+		double[] result = bp.computeOut(x);
+		System.out.println(Arrays.toString(x) + ":" + Arrays.toString(result));
+	}
 }

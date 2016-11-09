@@ -6,18 +6,18 @@ import java.util.Set;
 import java.util.Map.Entry;
 
 /**
- * JAVA ·´Ïò´«ÊäÉñ¾­ÍøÂç
+ * JAVA åå‘ä¼ è¾“ç¥ç»ç½‘ç»œ
  * 
- * @author kj021320 £¬ codeby 2008.12.10
+ * @author kj021320 ï¼Œ codeby 2008.12.10
  * 
  */
 public class JavaBackPropagationNeuralNetwork {
 	/**
-	 * Éñ¾­Ôª
+	 * ç¥ç»å…ƒ
 	 */
 	public class Neuron {
-		HashMap<Integer, Link> target = new HashMap<Integer, Link>();// Á¬½ÓÆäËûÉñ¾­ÔªµÄ
-		HashMap<Integer, Link> source = new HashMap<Integer, Link>();// ±»ÆäËûÉñ¾­ÔªÁ¬½ÓµÄ
+		HashMap<Integer, Link> target = new HashMap<Integer, Link>();// è¿æ¥å…¶ä»–ç¥ç»å…ƒçš„
+		HashMap<Integer, Link> source = new HashMap<Integer, Link>();// è¢«å…¶ä»–ç¥ç»å…ƒè¿æ¥çš„
 		double data = 0.0;
 
 		public Link sourceGet(int index) {
@@ -52,7 +52,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * Éñ¾­Á´
+	 * ç¥ç»é“¾
 	 */
 	public class Link {
 		Neuron owner;
@@ -90,11 +90,11 @@ public class JavaBackPropagationNeuralNetwork {
 		random.setSeed(System.nanoTime());
 	}
 
-	Neuron[] inputnode; // ÊäÈë²ãÉñ¾­Ôª
-	Neuron[] hiddennode; // Òşº¬²ãÉñ¾­Ôª
-	Neuron[] outputnode; // Êä³ö²ãÉñ¾­Ôª
-	double learnrate;// Ñ§Ï°ËÙ¶È
-	double threshold;// ·§Öµ,Îó²îÔÊĞí¶È
+	Neuron[] inputnode; // è¾“å…¥å±‚ç¥ç»å…ƒ
+	Neuron[] hiddennode; // éšå«å±‚ç¥ç»å…ƒ
+	Neuron[] outputnode; // è¾“å‡ºå±‚ç¥ç»å…ƒ
+	double learnrate;// å­¦ä¹ é€Ÿåº¦
+	double threshold;// é˜€å€¼,è¯¯å·®å…è®¸åº¦
 
 	private final int inputCount;
 	private final int hiddenCount;
@@ -103,11 +103,11 @@ public class JavaBackPropagationNeuralNetwork {
 	/**
 	 * 
 	 * @param input
-	 *            ÊäÈë²ãµÄÉñ¾­Ôª¸öÊı
+	 *            è¾“å…¥å±‚çš„ç¥ç»å…ƒä¸ªæ•°
 	 * @param hidden
-	 *            Òşº¬²ãµÄÉñ¾­Ôª¸öÊı
+	 *            éšå«å±‚çš„ç¥ç»å…ƒä¸ªæ•°
 	 * @param output
-	 *            Êä³ö²ãµÄÉñ¾­ÔªµÄ¸öÊı
+	 *            è¾“å‡ºå±‚çš„ç¥ç»å…ƒçš„ä¸ªæ•°
 	 */
 	public JavaBackPropagationNeuralNetwork(int input, int hidden, int output) {
 		inputCount = input;
@@ -132,18 +132,18 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * Ë¼¿¼·½·¨
+	 * æ€è€ƒæ–¹æ³•
 	 * 
 	 * @param inputs
-	 *            Ç°À¡²ãÉñ¾­¸öÊıÏà·ûµÄ¸¡µãÊı -1~1Ö®¼ä
-	 * @return Ë¼¿¼ºóµÄ½á¹û,¸öÊıÓëºó¶ËµÄÉñ¾­¸öÊıÏà·û£¬Ã¿¸ö¸¡µãÎª-1~1Ö®¼ä
+	 *            å‰é¦ˆå±‚ç¥ç»ä¸ªæ•°ç›¸ç¬¦çš„æµ®ç‚¹æ•° -1~1ä¹‹é—´
+	 * @return æ€è€ƒåçš„ç»“æœ,ä¸ªæ•°ä¸åç«¯çš„ç¥ç»ä¸ªæ•°ç›¸ç¬¦ï¼Œæ¯ä¸ªæµ®ç‚¹ä¸º-1~1ä¹‹é—´
 	 */
 	public double[] thinking(double[] inputs) {
-		/** °ÑÊı¾İÓ³Éäµ½Ç°À¡²ãµÄÉñ¾­ÔªÀïÃæ */
+		/** æŠŠæ•°æ®æ˜ å°„åˆ°å‰é¦ˆå±‚çš„ç¥ç»å…ƒé‡Œé¢ */
 		makeNeuron(inputnode, inputs);
-		/** Í¨¹ıÃ¿¸öÉñ¾­Á´µÄÈ¨ÖØ ´ÓÒş²Ø²ã¼ÆËãµ½×îÖÕÊä³ö²ãµÄÖµ */
+		/** é€šè¿‡æ¯ä¸ªç¥ç»é“¾çš„æƒé‡ ä»éšè—å±‚è®¡ç®—åˆ°æœ€ç»ˆè¾“å‡ºå±‚çš„å€¼ */
 		thinking();
-		/** °ÑÊä³ö²ãµÄÖµÓ³ÎªreturnµÄdoubleÊı×é */
+		/** æŠŠè¾“å‡ºå±‚çš„å€¼æ˜ ä¸ºreturnçš„doubleæ•°ç»„ */
 		return makeMatrix();
 	}
 
@@ -158,17 +158,17 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * ×ÜÌåÑµÁ·
+	 * æ€»ä½“è®­ç»ƒ
 	 * 
 	 * @param inputs
 	 * @param outputs
 	 * @param learnrate
-	 *            Ñ§Ï°¾«Ï¸¶È
+	 *            å­¦ä¹ ç²¾ç»†åº¦
 	 * @param error
-	 *            ÈİĞíÎó²î
+	 *            å®¹è®¸è¯¯å·®
 	 * @param maxlearn
-	 *            ×î´óÑ§Ï°´ÎÊı
-	 * @return ÊÇ·ñÍê³ÉÑµÁ·
+	 *            æœ€å¤§å­¦ä¹ æ¬¡æ•°
+	 * @return æ˜¯å¦å®Œæˆè®­ç»ƒ
 	 */
 	public boolean train(double[][] inputs, double[][] outputs, double learnrate, double error, int maxlearn) {
 		this.learnrate = learnrate;
@@ -196,18 +196,18 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * µ¥´ÎÑ§Ï°
+	 * å•æ¬¡å­¦ä¹ 
 	 * 
 	 * @param input
 	 * @param output
-	 * @return Îó²î
+	 * @return è¯¯å·®
 	 */
 	private double learn(double[] input, double[] output) {
-		/** °ÑÊı¾İÓ³Éäµ½Ç°À¡²ãµÄÉñ¾­ÔªÀïÃæ */
+		/** æŠŠæ•°æ®æ˜ å°„åˆ°å‰é¦ˆå±‚çš„ç¥ç»å…ƒé‡Œé¢ */
 		makeNeuron(inputnode, input);
-		/** Í¨¹ıÃ¿¸öÉñ¾­Á´µÄÈ¨ÖØ ´ÓÒş²Ø²ã¼ÆËãµ½×îÖÕÊä³ö²ãµÄÖµ */
+		/** é€šè¿‡æ¯ä¸ªç¥ç»é“¾çš„æƒé‡ ä»éšè—å±‚è®¡ç®—åˆ°æœ€ç»ˆè¾“å‡ºå±‚çš„å€¼ */
 		thinking();
-		/** Îó²î¼ÆËã */
+		/** è¯¯å·®è®¡ç®— */
 		return evolutionComputing(output);
 	}
 
@@ -217,7 +217,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * Éñ¾­Ôª´«Êä¼ÆËã
+	 * ç¥ç»å…ƒä¼ è¾“è®¡ç®—
 	 * 
 	 * @param ns
 	 */
@@ -228,16 +228,16 @@ public class JavaBackPropagationNeuralNetwork {
 			for (Entry<Integer, Link> ent : linkset) {
 				Link l = ent.getValue();
 				Neuron n = l.owner;
-				// ÕâÀïÊÇÖØµã,¼ÆËãÉñ¾­Ôª*Éñ¾­È¨ÖØ
+				// è¿™é‡Œæ˜¯é‡ç‚¹,è®¡ç®—ç¥ç»å…ƒ*ç¥ç»æƒé‡
 				sum += n.data * l.weight;
 			}
-			// ¼ÆËãÍê±ÏºóÍ¨¹ı SĞÍ¼¤»îº¯Êı°ÑÊı¾İ´æ´¢ÔÚÒş²Ø²ãµÄÉñ¾­½ÚµãÉÏ
+			// è®¡ç®—å®Œæ¯•åé€šè¿‡ Så‹æ¿€æ´»å‡½æ•°æŠŠæ•°æ®å­˜å‚¨åœ¨éšè—å±‚çš„ç¥ç»èŠ‚ç‚¹ä¸Š
 			ne.data = sigmoid(sum);
 		}
 	}
 
 	/**
-	 * ×îËÙÌİ¶ÈÏÂ½µ·¨ À´¼ÆËã delta¹æÔò(¿ÉÄÜÏİÈë¾Ö²¿×îÓÅµ¼ÖÂÎŞ·¨ÊÕÁ²¡£¡£)
+	 * æœ€é€Ÿæ¢¯åº¦ä¸‹é™æ³• æ¥è®¡ç®— deltaè§„åˆ™(å¯èƒ½é™·å…¥å±€éƒ¨æœ€ä¼˜å¯¼è‡´æ— æ³•æ”¶æ•›ã€‚ã€‚)
 	 * 
 	 * @param datas
 	 * @return
@@ -247,8 +247,8 @@ public class JavaBackPropagationNeuralNetwork {
 		double totalError = 0.0;
 		for (int i = 0; i < outputnode.length; i++) {
 			/**
-			 * Erri = Ti ¨C Oi O is the predicted output T is the correct output
-			 * ¦¤i = Erri * g¡¯(ini) g¡¯ is the derivative of the activation
+			 * Erri = Ti â€“ Oi O is the predicted output T is the correct output
+			 * Î”i = Erri * gâ€™(ini) gâ€™ is the derivative of the activation
 			 * function g
 			 */
 			output_deltaDatas[i] = (datas[i] - outputnode[i].data) * sigmoidDerivative(datas[i]);
@@ -257,7 +257,7 @@ public class JavaBackPropagationNeuralNetwork {
 		double[] hidden_deltaDatas = new double[hiddennode.length];
 		for (int i = 0; i < hiddennode.length; i++) {
 			/**
-			 * ¦¤j = g¡¯(inj) * ¦²i(Wj,i * ¦¤i)
+			 * Î”j = gâ€™(inj) * Î£i(Wj,i * Î”i)
 			 */
 			double error = 0.0;
 			Set<Entry<Integer, Link>> linkSet = hiddennode[i].target.entrySet();
@@ -267,7 +267,7 @@ public class JavaBackPropagationNeuralNetwork {
 			hidden_deltaDatas[i] = sigmoidDerivative(hiddennode[i].data) * error;
 		}
 		/**
-		 * Wj,i = Wj,i + ¦Á * Hj * ¦¤i Hj is the activation of the hidden unit
+		 * Wj,i = Wj,i + Î± * Hj * Î”i Hj is the activation of the hidden unit
 		 */
 		for (int i = 0; i < hiddennode.length; i++) {
 			Set<Entry<Integer, Link>> linkSet = hiddennode[i].target.entrySet();
@@ -279,7 +279,7 @@ public class JavaBackPropagationNeuralNetwork {
 		}
 		// System.out.println();
 		/**
-		 * Wk,j = Wk,j + ¦Á * Ik * ¦¤j Ik is the activation of the input unit
+		 * Wk,j = Wk,j + Î± * Ik * Î”j Ik is the activation of the input unit
 		 */
 		for (int i = 0; i < inputnode.length; i++) {
 			Set<Entry<Integer, Link>> linkSet = inputnode[i].target.entrySet();
@@ -291,7 +291,7 @@ public class JavaBackPropagationNeuralNetwork {
 		}
 		// System.out.println();
 		/**
-		 * E = 1/2 ¦²i((Ti ¨C Oi)^2)
+		 * E = 1/2 Î£i((Ti â€“ Oi)^2)
 		 */
 		for (int i = 0; i < outputnode.length; i++) {
 			double temp = outputnode[i].data - datas[i];
@@ -301,7 +301,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * °ÑÊı¾İÓ³Éäµ½Ã¿¸öÉñ¾­ÔªÀïÃæ
+	 * æŠŠæ•°æ®æ˜ å°„åˆ°æ¯ä¸ªç¥ç»å…ƒé‡Œé¢
 	 * 
 	 * @param neurons
 	 * @param datas
@@ -317,7 +317,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * °ÑoutputµÄÉñ¾­ÔªÊı¾İÓ³ÉäÎª¾ØÕó
+	 * æŠŠoutputçš„ç¥ç»å…ƒæ•°æ®æ˜ å°„ä¸ºçŸ©é˜µ
 	 * 
 	 * @return
 	 */
@@ -338,7 +338,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * ÕâÀïÊÇ»¥Ïà½»²æÁ¬½Ó
+	 * è¿™é‡Œæ˜¯äº’ç›¸äº¤å‰è¿æ¥
 	 * 
 	 * @param startns
 	 * @param endns
@@ -357,7 +357,7 @@ public class JavaBackPropagationNeuralNetwork {
 	}
 
 	/**
-	 * ÕâÀïÊÇSĞÍ¼¤»îº¯Êı.×îÖÕÄ¿µÄÊÇ°ÑËùÓĞÊı¾İ¶¼2Öµ»¯
+	 * è¿™é‡Œæ˜¯Så‹æ¿€æ´»å‡½æ•°.æœ€ç»ˆç›®çš„æ˜¯æŠŠæ‰€æœ‰æ•°æ®éƒ½2å€¼åŒ–
 	 * 
 	 * @param x
 	 * @return
@@ -386,23 +386,23 @@ public class JavaBackPropagationNeuralNetwork {
 	 * @throws Throwable
 	 */
 	public static void main(String[] args) throws Throwable {
-		// ´´½¨Ò»¸ö ·´Ïò´«ÊäÉñ¾­ÍøÂç
+		// åˆ›å»ºä¸€ä¸ª åå‘ä¼ è¾“ç¥ç»ç½‘ç»œ
 		JavaBackPropagationNeuralNetwork jbpn = new JavaBackPropagationNeuralNetwork(2, 4, 1);
 
-		// ÑµÁ·XOR
+		// è®­ç»ƒXOR
 		while (!jbpn.train(
 				new double[][] { new double[] { -1, -1 }, new double[] { 1, 1 }, new double[] { -1, 1 },
-						new double[] { 1, -1 } }, // Õâ¸öÎªÊäÈëÖµ
-				new double[][] { new double[] { -1 }, new double[] { -1 }, new double[] { 1 }, new double[] { 1 } }, // Õâ¸öÊÇ¼à¶½Ö¸µ¼½á¹û
+						new double[] { 1, -1 } }, // è¿™ä¸ªä¸ºè¾“å…¥å€¼
+				new double[][] { new double[] { -1 }, new double[] { -1 }, new double[] { 1 }, new double[] { 1 } }, // è¿™ä¸ªæ˜¯ç›‘ç£æŒ‡å¯¼ç»“æœ
 				0.3, 0.05, 1000)) {
 			jbpn.reBuildNeuralNetwork();
 		}
-		// Ë¼¿¼
+		// æ€è€ƒ
 		double[] res = jbpn.thinking(new double[] { -1, -1 });
 		for (double s : res) {
 			System.out.println("thinking:" + s);
 		}
-		// ÅúÁ¿Ë¼¿¼
+		// æ‰¹é‡æ€è€ƒ
 		double[][] ress = jbpn.batchThinking(new double[][] { new double[] { -0.8, -0.9 }, new double[] { 0.7, 0.3 },
 				new double[] { -.6, .85 }, new double[] { 1, -1 } });
 		for (double[] s : ress) {
