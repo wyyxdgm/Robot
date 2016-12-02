@@ -1,8 +1,9 @@
-package com.pulu.robot.om;
+package com.pulu.robot.service;
 
 import java.util.List;
 import java.util.Map;
 
+import com.pulu.robot.om.Rectangle;
 import com.pulu.robot.system.MouseController;
 import com.pulu.robot.util.MyThread;
 import com.pulu.robot.util.ReadFileToObjects;
