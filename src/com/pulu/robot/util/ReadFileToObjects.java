@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-
 /**
  * @author 戴贵茂
  * @version 1.0
@@ -29,7 +28,7 @@ public class ReadFileToObjects {
 		this.write = write;
 		this.read = read;
 		this.file = new File(path);
-		if (!this.file.exists()) {
+		if (!this.file.exists() && read) {
 			System.out.println("File is not exists!");
 		} else {
 			try {
@@ -67,6 +66,13 @@ public class ReadFileToObjects {
 		}
 	}
 
+	public void StringToFile(String s) throws IOException {
+		if (write) {
+			bw.write(s);
+			bw.flush();
+		}
+	}
+
 	public HashMap<String, String> MapFromFile() {
 		HashMap<String, String> content = null;
 		List<String> keys = new ArrayList<String>();
@@ -76,7 +82,6 @@ public class ReadFileToObjects {
 			String line = null;
 			String[] con;
 			try {
-
 				do {
 					line = br.readLine();
 					if (line != null && !line.equals("")) {
@@ -86,8 +91,7 @@ public class ReadFileToObjects {
 					}
 				} while (line != null && !line.equals(""));
 				while (keys.size() > 0) {
-					content.put(keys.remove(keys.size() - 1),
-							values.remove(values.size() - 1));
+					content.put(keys.remove(keys.size() - 1), values.remove(values.size() - 1));
 				}
 			} catch (IOException e) {
 				e.printStackTrace();

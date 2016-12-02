@@ -1,5 +1,18 @@
 package com.pulu.robot.om;
 
-public class EM {
+import java.io.Serializable;
+
+public class EM implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+	private Experience experience = null;
+
+	public Experience getExperience() {
+		return experience;
+	}
+
+	public void setExperience(Experience experience) {
+		this.experience = experience;
+	}
 
 }
