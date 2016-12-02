@@ -1,4 +1,4 @@
-package com.pulu.robot.nn;
+package com.pulu.robot.test.nn;
 
 import java.util.Random;
 public class BpDeep{

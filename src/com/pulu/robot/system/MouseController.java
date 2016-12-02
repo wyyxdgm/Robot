@@ -1,10 +1,10 @@
-package com.pulu.robot.ctr;
+package com.pulu.robot.system;
 
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
 
-import com.pulu.robot.base.Rectangle;
+import com.pulu.robot.om.Rectangle;
 
 /**
  * 鼠标控制者

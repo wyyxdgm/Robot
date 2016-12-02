@@ -1,4 +1,4 @@
-package com.pulu.robot.base;
+package com.pulu.robot.om;
 
 public class Rectangle {
 	public Rectangle(int x, int y) {

@@ -1,8 +1,6 @@
-package com.pulu.robot.test;
+package com.pulu.robot.test.nn;
 
 import java.util.Arrays;
-
-import com.pulu.robot.nn.BpDeep;
 
 public class BpDeepTest {
 	public static void main(String[] args) {
