@@ -11,6 +11,16 @@ public class EM implements Serializable {
 		return experience;
 	}
 
+	public EM() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public EM(Experience experience) {
+		super();
+		this.experience = experience;
+	}
+
 	public void setExperience(Experience experience) {
 		this.experience = experience;
 	}
